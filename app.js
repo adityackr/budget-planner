@@ -23,6 +23,7 @@ window.onload = () => {
 
 // main function
 function main() {
+	budgetInput.focus();
 	btnBudget.addEventListener('click', btnBudgetHandler);
 	btnCost.addEventListener('click', btnCostHandler);
 	btnReset.addEventListener('click', btnResetHandler);
@@ -111,4 +112,5 @@ function btnResetHandler() {
 	totalCost.innerText = '0.00';
 	remaining.innerText = '0.00';
 	btnReset.disabled = true;
+	budgetInput.focus();
 }
