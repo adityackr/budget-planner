@@ -1,3 +1,4 @@
+// Globals
 const budgetInput = document.getElementById('budget-input');
 const itemInput = document.getElementById('item-input');
 const costInput = document.getElementById('cost-input');
@@ -14,17 +15,34 @@ const totalBudget = document.getElementById('total-budget');
 const totalCost = document.getElementById('total-cost');
 const remaining = document.getElementById('remaining');
 
-btnBudget.addEventListener('click', () => {
+// onload function
+window.onload = () => {
+	main();
+};
+
+// main function
+function main() {
+	btnBudget.addEventListener('click', btnBudgetHandler);
+
+	btnCost.addEventListener('click', btnCostHandler);
+}
+
+// event handlers
+
+function btnBudgetHandler() {
 	if (budgetInput.value !== '') {
 		totalBudget.innerHTML = parseFloat(budgetInput.value).toFixed(2);
 	} else {
 		alert('Please fill the input field');
 	}
 	budgetInput.value = '';
-});
+	budgetInput.disabled = true;
+}
 
-btnCost.addEventListener('click', () => {
-	if (itemInput.value === '' || costInput.value === '') {
+function btnCostHandler() {
+	if (totalBudget.innerText === '0.00') {
+		alert('Please enter your budget first');
+	} else if (itemInput.value === '' || costInput.value === '') {
 		alert('Please fill the input fields');
 	} else {
 		const itemsContentDiv = document.createElement('div');
@@ -51,4 +69,8 @@ btnCost.addEventListener('click', () => {
 			+totalBudget.innerHTML - +totalCost.innerHTML
 		).toFixed(2);
 	}
-});
+}
+
+// dom functions
+
+// utils
